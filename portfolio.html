@@ -4,107 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio - Visão Sonora Produções</title>
-    <link rel="stylesheet" href="styles.css"> <!-- mantém o mesmo CSS do site principal -->
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilo específico da página de portfólio */
-        .portfolio-page {
-            padding-top: 120px;
-            min-height: 100vh;
-            background: #f8f9fa;
-        }
+        .portfolio-page { padding-top: 100px; background: #0f0f1a; min-height: 100vh; }
+        .portfolio-header { text-align: center; padding: 80px 20px; background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; }
+        .portfolio-header h1 { font-size: 4rem; margin-bottom: 1rem; }
+        .portfolio-header p { font-size: 1.3rem; opacity: 0.9; }
 
-        .portfolio-header {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to right, #1a1a2e, #16213e);
-            color: white;
+        .category-buttons { 
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 3rem; padding: 80px 20px; max-width: 1400px; margin: 0 auto; 
         }
-
-        .portfolio-header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+        .category-card { 
+            position: relative; width: 360px; height: 420px; border-radius: 25px; overflow: hidden; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4); cursor: pointer; transition: all 0.5s ease;
         }
-
-        .category-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+        .category-card:hover { transform: translateY(-20px) scale(1.03); }
+        .category-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .category-card:hover img { transform: scale(1.1); }
+        .category-overlay {
+            position: absolute; inset: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            display: flex; flex-direction: column; justify-content: end; padding: 2rem; color: white;
         }
+        .category-overlay h3 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .category-overlay p { font-size: 1.1rem; opacity: 0.9; }
 
-        .category-card {
-            background: white;
-            width: 320px;
-            height: 380px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        /* Seções */
+        .portfolio-section { display: none; padding: 100px 20px; max-width: 1400px; margin: 0 auto; }
+        .portfolio-section.active { display: block; animation: fade 0.8s; }
+        @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+        .section-title { text-align: center; font-size: 3rem; color: #e94560; margin-bottom: 4rem; }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
         }
-
-        .category-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(233, 69, 96, 0.3);
+        .portfolio-item {
+            background: #16213e; border-radius: 18px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); cursor: pointer; transition: 0.4s;
         }
+        .portfolio-item:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(233,69,96,0.3); }
+        .portfolio-item img, .portfolio-item iframe { width: 100%; height: 220px; object-fit: cover; }
+        .portfolio-item h3 { color: #e94560; padding: 1.5rem 1.5rem 0.5rem; font-size: 1.4rem; }
+        .portfolio-item p { color: #aaa; padding: 0 1.5rem 1.5rem; }
 
-        .category-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        /* Lightbox Modal */
+        .lightbox {
+            display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); align-items: center; justify-content: center; padding: 20px; overflow: auto;
         }
-
-        .category-card h3 {
-            font-size: 1.8rem;
-            color: #1a1a2e;
-            margin: 1.5rem 0 0.5rem;
+        .lightbox.active { display: flex; }
+        .lightbox-content {
+            background: #111; border-radius: 20px; max-width: 1000px; width: 100%; position: relative; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(233,69,96,0.4);
         }
-
-        .category-card p {
-            color: #e94560;
-            font-weight: 600;
-        }
-
-        /* Seções de conteúdo (inicialmente escondidas) */
-        .portfolio-section {
-            display: none;
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .portfolio-section.active {
-            display: block;
-            animation: fadeIn 0.6s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .lightbox video, .lightbox iframe { width: 100%; height: 60vh; object-fit: contain; background: #000; }
+        .lightbox-caption { padding: 20px; color: white; text-align: center; }
+        .lightbox-caption h3 { font-size: 2rem; color: #e94560; margin-bottom: 10px; }
+        .close-lightbox {
+            position: absolute; top: 15px; right: 25px; font-size: 40px; color: white; cursor: pointer; z-index: 10;
         }
 
         .back-btn {
-            display: inline-block;
-            margin: 40px auto;
-            padding: 12px 30px;
-            background: #1a1a2e;
-            color: white;
-            border-radius: 50px;
-            text-align: center;
+            display: block; width: fit-content; margin: 60px auto; padding: 15px 40px;
+            background: #e94560; color: white; border-radius: 50px; font-weight: bold; text-decoration: none;
         }
+        .back-btn:hover { background: #d13050; }
     </style>
 </head>
 <body>
 
-    <!-- Header (igual ao site principal) -->
+    <!-- Header -->
     <header class="header">
         <nav class="nav">
             <div class="logo"><h1>Visão Sonora</h1></div>
@@ -121,89 +93,152 @@
 
     <div class="portfolio-page">
 
-        <!-- Cabeçalho da página -->
         <div class="portfolio-header">
-            <h1>Nosso Portfólio</h1>
-            <p>Escolha uma categoria para ver os projetos</p>
+            <h1>Portfólio</h1>
+            <p>Clique em uma categoria para explorar nossos trabalhos</p>
         </div>
 
-        <!-- 3 Grandes Botões / Cards -->
+        <!-- 3 BOTÕES GRANDES -->
         <div class="category-buttons">
             <div class="category-card" data-target="podcasts">
-                <img src="https://via.placeholder.com/400x300/16213e/ffffff?text=PODCASTS" alt="Podcasts">
-                <h3>PODCASTS</h3>
-                <p>Estúdio • Gravação • Edição • Identidade Sonora</p>
+                <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800" alt="Podcasts">
+                <div class="category-overlay">
+                    <h3>PODCASTS</h3>
+                    <p>Gravação • Edição • Identidade Sonora</p>
+                </div>
             </div>
 
             <div class="category-card" data-target="documentarios">
-                <img src="https://via.placeholder.com/400x300/16213e/ffffff?text=DOCUMENTÁRIOS" alt="Documentários">
-                <h3>DOCUMENTÁRIOS</h3>
-                <p>Histórias reais • Direção • Fotografia • Edição</p>
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800" alt="Documentários">
+                <div class="category-overlay">
+                    <h3>DOCUMENTÁRIOS</h3>
+                    <p>Histórias reais em movimento</p>
+                </div>
             </div>
 
             <div class="category-card" data-target="excursao">
-                <img src="https://via.placeholder.com/400x300/16213e/ffffff?text=EXCURSÃO+E+EVENTOS" alt="Excursão e Eventos">
-                <h3>EXCURSÃO & EVENTOS</h3>
-                <p>Transmissão ao vivo • Multicâmera • Som direto</p>
+                <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53e1a9?w=800" alt="Eventos ao vivo">
+                <div class="category-overlay">
+                    <h3>EXCURSÃO & EVENTOS</h3>
+                    <p>Shows • Festivais • Transmissão ao vivo</p>
+                </div>
             </div>
         </div>
 
-        <!-- ====== SEÇÃO PODCASTS ====== -->
+        <!-- PODCASTS -->
         <div id="podcasts" class="portfolio-section">
-            <h2 style="text-align:center; color:#e94560; margin-bottom:40px;">Podcasts Produzidos</h2>
+            <h2 class="section-title">Podcasts</h2>
             <div class="portfolio-grid">
-                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=Podcast+Flow" alt=""><h3>Flow Podcast</h3><p>Identidade visual + gravação em estúdio</p></div>
-                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=PodPah" alt=""><h3>PodPah</h3><p>Edição semanal + motion graphics</p></div>
-                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=NerdCast" alt=""><h3>NerdCast</h3><p>Masterização de áudio premium</p></div>
+                <div class="portfolio-item" data-video="https://www.youtube.com/embed/ScMzIvxBSi4">
+                    <img src="https://img.youtube.com/vi/ScMzIvxBSi4/maxresdefault.jpg" alt="Flow Podcast">
+                    <h3>Flow Podcast</h3><p>Identidade visual + gravação semanal</p>
+                </div>
+                <div class="portfolio-item" data-video="https://www.youtube.com/embed/5qap5aO4i9A">
+                    <img src="https://img.youtube.com/vi/5qap5aO4i9A/maxresdefault.jpg" alt="PodPah">
+                    <h3>PodPah</h3><p>Motion graphics + edição premium</p>
+                </div>
+                <div class="portfolio-item" data-video="https://www.youtube.com/embed/O_E4dWgwqF4">
+                    <img src="https://img.youtube.com/vi/O_E4dWgwqF4/maxresdefault.jpg" alt="Venus Podcast">
+                    <h3>Venus Podcast</h3><p>Estúdio fixo + masterização</p>
+                </div>
             </div>
-            <div style="text-align:center;"><a href="#" class="back-btn" onclick="voltar()">← Voltar às categorias</a></div>
+            <a href="#" class="back-btn" onclick="voltar()">Voltar às Categorias</a>
         </div>
 
-        <!-- ====== SEÇÃO DOCUMENTÁRIOS ====== -->
+        <!-- DOCUMENTÁRIOS -->
         <div id="documentarios" class="portfolio-section">
-            <h2 style="text-align:center; color:#e94560; margin-bottom:40px;">Documentários</h2>
+            <h2 class="section-title">Documentários</h2>
             <div class="portfolio-grid">
-                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=Raízes+do+Sertão" alt=""><h3>Raízes do Sertão</h3><p>Documentário sobre cultura nordestina</p></div>
-                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=Vozes+da+Favela" alt=""><h3>Vozes da Favela</h3><p>Prêmio de melhor edição 2024</p></div>
+                <div class="portfolio-item" data-video="https://player.vimeo.com/video/76979871">
+                    <img src="https://i.vimeocdn.com/video/76979871_1280x720.jpg" alt="Raízes do Sertão">
+                    <h3>Raízes do Sertão</h3><p>Documentário cultural • 28min</p>
+                </div>
+                <div class="portfolio-item" data-video="https://www.youtube.com/embed/8zL3L9b0lWk">
+                    <img src="https://img.youtube.com/vi/8zL3L9b0lWk/maxresdefault.jpg" alt="Vozes da Favela">
+                    <h3>Vozes da Favela</h3><p>Prêmio Melhor Edição 2024</p>
+                </div>
             </div>
-            <div style="text-align:center;"><a href="#" class="back-btn" onclick="voltar()">← Voltar às categorias</a></div>
+            <a href="#" class="back-btn" onclick="voltar()">Voltar às Categorias</a>
         </div>
 
-        <!-- ====== SEÇÃO EXCURSÃO & EVENTOS ====== -->
+        <!-- EXCURSÃO & EVENTOS -->
         <div id="excursao" class="portfolio-section">
-            <h2 style="text-align:center; color:#e94560; margin-bottom:40px;">Excursão & Eventos Ao Vivo</h2>
+            <h2 class="section-title">Excursão & Eventos Ao Vivo</h2>
             <div class="portfolio-grid">
-                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=Rock+in+Rio+2024" alt=""><h3>Rock in Rio 2024</h3><p>Transmissão oficial palco mundo</p></div>
-                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=Lollapalooza+SP" alt=""><h3>Lollapalooza SP</h3><p>8 câmeras + streaming 4K</p></div>
-                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=Excursão+Anitta" alt=""><h3>Excursão Anitta – Europa</h3><p>Registro completo da turnê</p></div>
+                <div class="portfolio-item" data-video="https://www.youtube.com/embed/60ItHLz5WEA">
+                    <img src="https://img.youtube.com/vi/60ItHLz5WEA/maxresdefault.jpg" alt="Rock in Rio">
+                    <h3>Rock in Rio 2024 – Palco Mundo</h3><p>Transmissão oficial 4K</p>
+                </div>
+                <div class="portfolio-item" data-video="https://www.youtube.com/embed/R4vM_2q3m9o">
+                    <img src="https://img.youtube.com/vi/R4vM_2q3m9o/maxresdefault.jpg" alt="Anitta Europa Tour">
+                    <h3>Anitta – Funk Generation Tour</h3><p>Registro completo da turnê europeia</p>
+                </div>
+                <div class="portfolio-item" data-video="https://www.youtube.com/embed/9bZkp7q19f0">
+                    <img src="https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg" alt="Lollapalooza">
+                    <h3>Lollapalooza SP 2025</h3><p>8 câmeras + streaming global</p>
+                </div>
             </div>
-            <div style="text-align:center;"><a href="#" class="back-btn" onclick="voltar()">← Voltar às categorias</a></div>
+            <a href="#" class="back-btn" onclick="voltar()">Voltar às Categorias</a>
         </div>
 
     </div>
 
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="close-lightbox" onclick="fecharLightbox()">&times;</span>
+            <div id="lightbox-media"></div>
+            <div class="lightbox-caption">
+                <h3 id="lightbox-titulo"></h3>
+                <p id="lightbox-desc"></p>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Mostrar a seção clicada
+        // Abrir seção
         document.querySelectorAll('.category-card').forEach(card => {
             card.addEventListener('click', () => {
-                const target = card.getAttribute('data-target');
-                document.querySelectorAll('.portfolio-section').forEach(sec => {
-                    sec.classList.remove('active');
-                });
+                const target = card.dataset.target;
+                document.querySelectorAll('.portfolio-section').forEach(s => s.classList.remove('active'));
                 document.getElementById(target).classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
 
-        // Voltar para os botões
         function voltar() {
-            document.querySelectorAll('.portfolio-section').forEach(sec => {
-                sec.classList.remove('active');
-            });
+            document.querySelectorAll('.portfolio-section').forEach(s => s.classList.remove('active'));
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Menu mobile (mesmo do site principal)
+        // Lightbox
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const videoUrl = item.dataset.video;
+                const titulo = item.querySelector('h3').textContent;
+                const desc = item.querySelector('p').textContent;
+
+                document.getElementById('lightbox-titulo').textContent = titulo;
+                document.getElementById('lightbox-desc').textContent = desc;
+
+                const mediaContainer = document.getElementById('lightbox-media');
+                mediaContainer.innerHTML = videoUrl.includes('vimeo') 
+                    ? `<iframe src="${videoUrl}?autoplay=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`
+                    : `<iframe src="${videoUrl}?autoplay=1&rel=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+
+                document.getElementById('lightbox').classList.add('active');
+            });
+        });
+
+        function fecharLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.getElementById('lightbox-media').innerHTML = '';
+        }
+
+        // Fechar com ESC
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharLightbox(); });
+
+        // Menu mobile
         document.querySelector('.hamburger').addEventListener('click', () => {
             document.querySelector('.nav-menu').classList.toggle('active');
         });
