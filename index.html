@@ -61,27 +61,60 @@
         </div>
     </section>
 
-    <!-- Portfólio Section -->
-    <section id="portfolio" class="portfolio">
-        <h2>Portfólio</h2>
-        <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="https://via.placeholder.com/400x300/16213e/ffffff?text=Projeto+1" alt="Projeto 1">
-                <h3>Campanha Publicitária</h3>
-                <p>Vídeo corporativo para marca global.</p>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://via.placeholder.com/400x300/16213e/ffffff?text=Projeto+2" alt="Projeto 2">
-                <h3>Festival de Música</h3>
-                <p>Transmissão ao vivo com múltiplas câmeras.</p>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://via.placeholder.com/400x300/16213e/ffffff?text=Projeto+3" alt="Projeto 3">
-                <h3>Documentário Curto</h3>
-                <p>História real com edição imersiva.</p>
-            </div>
+   <!-- Portfólio Section -->
+<section id="portfolio" class="portfolio">
+    <h2>Portfólio</h2>
+
+    <!-- Botões de Filtro -->
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="campanha">Campanha Publicitária</button>
+        <button class="filter-btn" data-filter="festival">Festival de Música</button>
+        <button class="filter-btn" data-filter="documentario">Documentário Curto</button>
+    </div>
+
+    <!-- Grid de Projetos -->
+    <div class="portfolio-grid">
+        <!-- Campanha Publicitária -->
+        <div class="portfolio-item" data-category="campanha">
+            <img src="https://via.placeholder.com/500x350/16213e/ffffff?text=Campanha+Publicitária" alt="Campanha Publicitária">
+            <h3>Campanha Global – Nike</h3>
+            <p>Vídeo corporativo para marca global.</p>
         </div>
-    </section>
+
+        <div class="portfolio-item" data-category="campanha">
+            <img src="https://via.placeholder.com/500x350/16213e/ffffff?text=Campanha+2" alt="Campanha 2">
+            <h3>Coca-Cola Summer 2024</h3>
+            <p>Comercial de TV + redes sociais.</p>
+        </div>
+
+        <!-- Festival de Música -->
+        <div class="portfolio-item" data-category="festival">
+            <img src="https://via.placeholder.com/500x350/16213e/ffffff?text=Festival+Rock+in+Rio" alt="Festival de Música">
+            <h3>Rock in Rio 2024</h3>
+            <p>Transmissão ao vivo com múltiplas câmeras.</p>
+        </div>
+
+        <div class="portfolio-item" data-category="festival">
+            <img src="https://via.placeholder.com/500x350/16213e/ffffff?text=Lollapalooza" alt="Lollapalooza">
+            <h3>Lollapalooza SP</h3>
+            <p>Cobertura completa + highlights.</p>
+        </div>
+
+        <!-- Documentário Curto -->
+        <div class="portfolio-item" data-category="documentario">
+            <img src="https://via.placeholder.com/500x350/16213e/ffffff?text=Documentário+Curto" alt="Documentário">
+            <h3>Raízes do Sertão</h3>
+            <p>História real com edição imersiva.</p>
+        </div>
+
+        <div class="portfolio-item" data-category="documentario">
+            <img src="https://via.placeholder.com/500x350/16213e/ffffff?text=Doc+2" alt="Documentário 2">
+            <h3>Vozes da Favela</h3>
+            <p>Documentário social premiado.</p>
+        </div>
+    </div>
+</section>
 
     <!-- Sobre Section -->
     <section id="sobre" class="about">
