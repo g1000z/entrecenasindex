@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visão Sonora Produções - Audiovisual Inovador</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <h1>Visão Sonora</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#portfolio">Portfólio</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Inovação em Cada Cena</h2>
+            <p>Transformamos ideias em experiências audiovisuais impactantes. Produção de vídeos, eventos e conteúdo digital com arte e pioneirismo.</p>
+            <a href="#contato" class="btn">Entre em Contato</a>
+        </div>
+        <div class="hero-image">
+            <!-- Placeholder para imagem de fundo ou vídeo -->
+            <img src="https://via.placeholder.com/800x600/1a1a2e/e94560?text=Video+Hero" alt="Cena de produção audiovisual">
+        </div>
+    </section>
+
+    <!-- Serviços Section -->
+    <section id="servicos" class="services">
+        <h2>Nossos Serviços</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Produção de Vídeos</h3>
+                <p>De roteiros a edição final, criamos narrativas visuais que cativam.</p>
+            </div>
+            <div class="service-card">
+                <h3>Eventos Ao Vivo</h3>
+                <p>Transmissões em streaming, som e iluminação para eventos inesquecíveis.</p>
+            </div>
+            <div class="service-card">
+                <h3>Edição de Áudio/Vídeo</h3>
+                <p>Refinamento profissional com ferramentas de ponta para qualidade superior.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfólio Section -->
+    <section id="portfolio" class="portfolio">
+        <h2>Portfólio</h2>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/400x300/16213e/ffffff?text=Projeto+1" alt="Projeto 1">
+                <h3>Campanha Publicitária</h3>
+                <p>Vídeo corporativo para marca global.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/400x300/16213e/ffffff?text=Projeto+2" alt="Projeto 2">
+                <h3>Festival de Música</h3>
+                <p>Transmissão ao vivo com múltiplas câmeras.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://via.placeholder.com/400x300/16213e/ffffff?text=Projeto+3" alt="Projeto 3">
+                <h3>Documentário Curto</h3>
+                <p>História real com edição imersiva.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="about">
+        <h2>Sobre Nós</h2>
+        <p>A Visão Sonora é uma empresa fictícia de audiovisual fundada em 2020, dedicada a unir tecnologia e criatividade. Com equipe de profissionais apaixonados, entregamos projetos que vão além do esperado, inspirados em inovação e arte.</p>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="contact">
+        <h2>Contato</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Seu Nome" required>
+            <input type="email" placeholder="Seu Email" required>
+            <textarea placeholder="Sua Mensagem" required></textarea>
+            <button type="submit" class="btn">Enviar</button>
+        </form>
+        <div class="contact-info">
+            <p>Email: contato@visaosonora.com</p>
+            <p>Telefone: (11) 99999-9999</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Visão Sonora Produções. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // JS simples para menu mobile (inspirado no original)
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
