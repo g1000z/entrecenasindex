@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Visão Sonora Produções</title>
+    <link rel="stylesheet" href="styles.css"> <!-- mantém o mesmo CSS do site principal -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilo específico da página de portfólio */
+        .portfolio-page {
+            padding-top: 120px;
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+
+        .portfolio-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to right, #1a1a2e, #16213e);
+            color: white;
+        }
+
+        .portfolio-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: white;
+            width: 320px;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .category-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(233, 69, 96, 0.3);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .category-card h3 {
+            font-size: 1.8rem;
+            color: #1a1a2e;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .category-card p {
+            color: #e94560;
+            font-weight: 600;
+        }
+
+        /* Seções de conteúdo (inicialmente escondidas) */
+        .portfolio-section {
+            display: none;
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portfolio-section.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin: 40px auto;
+            padding: 12px 30px;
+            background: #1a1a2e;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header (igual ao site principal) -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo"><h1>Visão Sonora</h1></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="index.html#servicos">Serviços</a></li>
+                <li><a href="portfolio.html">Portfólio</a></li>
+                <li><a href="index.html#sobre">Sobre</a></li>
+                <li><a href="index.html#contato">Contato</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </nav>
+    </header>
+
+    <div class="portfolio-page">
+
+        <!-- Cabeçalho da página -->
+        <div class="portfolio-header">
+            <h1>Nosso Portfólio</h1>
+            <p>Escolha uma categoria para ver os projetos</p>
+        </div>
+
+        <!-- 3 Grandes Botões / Cards -->
+        <div class="category-buttons">
+            <div class="category-card" data-target="podcasts">
+                <img src="https://via.placeholder.com/400x300/16213e/ffffff?text=PODCASTS" alt="Podcasts">
+                <h3>PODCASTS</h3>
+                <p>Estúdio • Gravação • Edição • Identidade Sonora</p>
+            </div>
+
+            <div class="category-card" data-target="documentarios">
+                <img src="https://via.placeholder.com/400x300/16213e/ffffff?text=DOCUMENTÁRIOS" alt="Documentários">
+                <h3>DOCUMENTÁRIOS</h3>
+                <p>Histórias reais • Direção • Fotografia • Edição</p>
+            </div>
+
+            <div class="category-card" data-target="excursao">
+                <img src="https://via.placeholder.com/400x300/16213e/ffffff?text=EXCURSÃO+E+EVENTOS" alt="Excursão e Eventos">
+                <h3>EXCURSÃO & EVENTOS</h3>
+                <p>Transmissão ao vivo • Multicâmera • Som direto</p>
+            </div>
+        </div>
+
+        <!-- ====== SEÇÃO PODCASTS ====== -->
+        <div id="podcasts" class="portfolio-section">
+            <h2 style="text-align:center; color:#e94560; margin-bottom:40px;">Podcasts Produzidos</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=Podcast+Flow" alt=""><h3>Flow Podcast</h3><p>Identidade visual + gravação em estúdio</p></div>
+                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=PodPah" alt=""><h3>PodPah</h3><p>Edição semanal + motion graphics</p></div>
+                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=NerdCast" alt=""><h3>NerdCast</h3><p>Masterização de áudio premium</p></div>
+            </div>
+            <div style="text-align:center;"><a href="#" class="back-btn" onclick="voltar()">← Voltar às categorias</a></div>
+        </div>
+
+        <!-- ====== SEÇÃO DOCUMENTÁRIOS ====== -->
+        <div id="documentarios" class="portfolio-section">
+            <h2 style="text-align:center; color:#e94560; margin-bottom:40px;">Documentários</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=Raízes+do+Sertão" alt=""><h3>Raízes do Sertão</h3><p>Documentário sobre cultura nordestina</p></div>
+                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=Vozes+da+Favela" alt=""><h3>Vozes da Favela</h3><p>Prêmio de melhor edição 2024</p></div>
+            </div>
+            <div style="text-align:center;"><a href="#" class="back-btn" onclick="voltar()">← Voltar às categorias</a></div>
+        </div>
+
+        <!-- ====== SEÇÃO EXCURSÃO & EVENTOS ====== -->
+        <div id="excursao" class="portfolio-section">
+            <h2 style="text-align:center; color:#e94560; margin-bottom:40px;">Excursão & Eventos Ao Vivo</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=Rock+in+Rio+2024" alt=""><h3>Rock in Rio 2024</h3><p>Transmissão oficial palco mundo</p></div>
+                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=Lollapalooza+SP" alt=""><h3>Lollapalooza SP</h3><p>8 câmeras + streaming 4K</p></div>
+                <div class="portfolio-item"><img src="https://via.placeholder.com/500x350?text=Excursão+Anitta" alt=""><h3>Excursão Anitta – Europa</h3><p>Registro completo da turnê</p></div>
+            </div>
+            <div style="text-align:center;"><a href="#" class="back-btn" onclick="voltar()">← Voltar às categorias</a></div>
+        </div>
+
+    </div>
+
+    <script>
+        // Mostrar a seção clicada
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const target = card.getAttribute('data-target');
+                document.querySelectorAll('.portfolio-section').forEach(sec => {
+                    sec.classList.remove('active');
+                });
+                document.getElementById(target).classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Voltar para os botões
+        function voltar() {
+            document.querySelectorAll('.portfolio-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Menu mobile (mesmo do site principal)
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
